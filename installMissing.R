@@ -74,7 +74,7 @@ installMissing <- function (dir.missing = "~", ask2install = FALSE, all.folders 
           installPackage = "y"
 
      if(installPackage == "y")
-        install.packages(as.character(pack2install[i,1]), quiet = TRUE)
+        install.packages(as.character(pack2install[i,1]), quiet = FALSE)
   }
 }
 

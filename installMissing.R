@@ -1,10 +1,10 @@
-require(tools);require(magrittr);require(dplyr);require(stringr)
+require(tools);require(dplyr);require(stringr)
 
 rm(list = ls())
 setwd("~/Dropbox/")
 
-installMissing <- function (dir.missing = "~", ask2install = FALSE) {
-  all.dirs <- list.dirs(dir.missing)  # Get all of the subfolders in the directory
+installMissing <- function (dir.missing = "~", ask2install = FALSE, all.folders = TRUE) {
+  all.dirs <- list.dirs(dir.missing, recursive = all.folders)  # Get all of the subfolders in the directory
   print("locating packages used in folder")
   # Loop through all of the subfolders....
   for(dd in all.dirs)
@@ -79,6 +79,6 @@ installMissing <- function (dir.missing = "~", ask2install = FALSE) {
 }
 
 # Example of function
-installMissing(dir.missing = "~", ask2install = TRUE)
+installMissing(dir.missing = "~", ask2install = TRUE, )
 
 

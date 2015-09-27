@@ -20,24 +20,24 @@ installMissing <- function (dir.missing = "~", ask2install = FALSE) {
               subline <- strsplit(linn[i], ";")[[1]]
               for(jj in 1:length(subline)){
                 if(str_detect(subline[jj], "require") | str_detect(subline[jj], "library")){
-                pack.name <- subline[jj] %>%
-                  str_sub(subline[jj] %>%str_locate(c("require", "library")) %>%
-                  as.data.frame() %>%
-                  select(end) %>%
-                  filter(!is.na(end)) %>% slice(1) + 2, nchar(subline[jj]))
-  
-                pack.name <- pack.name %>% 
-                  str_sub(1,pack.name %>%str_locate(c(",", "\\)")) %>%
-                            as.data.frame() %>%
-                            select(end) %>%
-                            filter(!is.na(end)) %>%
-                            summarize(end = min(end))-1) %>%
-                  str_replace_all('\\"', '') %>%
-                  str_replace_all(" ", "")
-                
-                if(!exists("pack2install"))
-                  pack2install <- data_frame(Package = pack.name) else
-                    pack2install <- bind_rows(data_frame(Package = pack.name), pack2install)
+                  pack.name <- subline[jj] %>%
+                    str_sub(subline[jj] %>%str_locate(c("require", "library")) %>%
+                    as.data.frame() %>%
+                    select(end) %>%
+                    filter(!is.na(end)) %>% slice(1) + 2, nchar(subline[jj]))
+    
+                  pack.name <- pack.name %>% 
+                    str_sub(1,pack.name %>%str_locate(c(",", "\\)")) %>%
+                              as.data.frame() %>%
+                              select(end) %>%
+                              filter(!is.na(end)) %>%
+                              summarize(end = min(end))-1) %>%
+                    str_replace_all('\\"', '') %>%
+                    str_replace_all(" ", "")
+                  
+                  if(!exists("pack2install"))
+                    pack2install <- data_frame(Package = pack.name) else
+                      pack2install <- bind_rows(data_frame(Package = pack.name), pack2install)
         # We now have a package that should be installed
             }
           }

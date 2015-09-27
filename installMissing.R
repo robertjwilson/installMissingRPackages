@@ -64,7 +64,7 @@ installMissing <- function (dir.missing = "~", ask2install = FALSE, all.folders 
   # Strip the unavilable packages from the packages to install
   pack2install <- unique(pack2install) %>%
     dplyr::filter(Package %in% installed.packages() == FALSE) %>%
-      dplyr::filter(Package %in% available.packages() == FALSE)
+      dplyr::filter(Package %in% available.packages() == TRUE)
   
   # Install the packages
   for(i in 1:nrow(pack2install))

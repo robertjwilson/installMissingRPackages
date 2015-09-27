@@ -26,6 +26,7 @@ installMissing <- function (dir.missing = "~", ask2install = FALSE, all.folders 
                 # First check if require or library is in the line of code
                 if(str_detect(subline[jj], "require") | str_detect(subline[jj], "library")){
                   # Now strip out the package called by require or library
+                  # Currently this assumes code is of the form require(package), not require(package = package)
                   pack.name <- subline[jj] %>%
                     str_sub(subline[jj] %>%str_locate(c("require", "library")) %>%
                     as.data.frame() %>%
@@ -75,13 +76,13 @@ installMissing <- function (dir.missing = "~", ask2install = FALSE, all.folders 
       if(ask2install)
         installPackage <- readline(prompt=paste("Do you want to install?", as.character(pack2install[i,1]) , "(y/n)")) else
           installPackage = "y"
-
+  # Ideally the below will check if the package actually installed and track what is failing to install
      if(installPackage == "y")
         install.packages(as.character(pack2install[i,1]), quiet = FALSE)
   }
 }
 
 # Example of function
-installMissing(dir.missing = "~", ask2install = TRUE, )
+installMissing(dir.missing = "~", ask2install = FALSE )
 
 

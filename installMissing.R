@@ -4,6 +4,9 @@ rm(list = ls())
 setwd("~/Dropbox/")
 
 installMissing <- function (dir.missing = "~", ask2install = FALSE, all.folders = TRUE) {
+  # dir.missing = folder you want to check
+  # ask2install = check whether you want to install individual packages
+  # all.folder = look into subfolders or not
   all.dirs <- list.dirs(dir.missing, recursive = all.folders)  # Get all of the subfolders in the directory
   print("locating packages used in folder")
   # Loop through all of the subfolders....

@@ -30,7 +30,7 @@ installMissing <-
                   # First check if require or library is in the line of code
                   if (str_detect(subline[jj], "require") |
                       str_detect(subline[jj], "library")) {
-                    # Now strip out the package called by require or library
+                    # Now strip out the names of the package called by require or library
                     # Currently this assumes code is of the form require(package), not require(package = package)
                     pack.name <- subline[jj] %>%
                       str_sub(
